@@ -4,6 +4,17 @@ import math
 import pandas as pd
 import numpy as np
 
+class Preprocess():
+    # discretize the raw data set
+    # make number of states completely dynamic
+    # use an array input to define thresholds for states
+    # store numStates as a variable in class
+    # intended to use as direct input to the createTransitionMatrix function
+    # also intended to replaced discretizeData function
+
+    def __init__(self, thresholdArray, rawDataArray):
+        self.numStates = len(rawDataArray)
+
 def discretizeData(inArray):
     threshold = .0025
     # Assume 3 states for now
@@ -43,10 +54,6 @@ def createTransitionMatrix(inArray, keyLength, numStates):
 
         # turn this into binary for array index
         index = int(keyStr, numStates)
-
-        #debug print
-        if i<5:
-            print("index: " + str(index))
 
         countMatrix[index][int(inArray[i+keyLength])] = countMatrix[index][int(inArray[i+keyLength])] + 1
 
