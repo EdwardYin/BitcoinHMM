@@ -4,10 +4,6 @@ import math
 import pandas as pd
 import numpy as np
 
-# reads this CSV file into a DataFrame
-csvPath = 'C:\\Users\\Edward\\Documents\\Github\\BitcoinHMM\\vwapHourlyBTCUSD.csv'
-myDF = pd.read_csv(csvPath)
-
 def discretizeData(inArray):
     threshold = .0025
     # Assume 3 states for now
@@ -61,7 +57,11 @@ def createTransitionMatrix(inArray, keyLength, numStates):
 
     return tMatrix
 
-dArray = discretizeData(myDF['Vwap'])
-endMatrix = createTransitionMatrix(dArray, 3, 3)
-print(endMatrix)
-# createTransitionMatrix(myDF, 3)
+if __name__ in '__main__':
+    # reads this CSV file into a DataFrame
+    csvPath = 'C:\\Users\\Edward\\Documents\\Github\\BitcoinHMM\\vwapHourlyBTCUSD.csv'
+    myDF = pd.read_csv(csvPath)
+    dArray = discretizeData(myDF['Vwap'])
+    endMatrix = createTransitionMatrix(dArray, 3, 3)
+    print(endMatrix)
+    # createTransitionMatrix(myDF, 3)
